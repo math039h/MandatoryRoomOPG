@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "838538768122",
+    "firebase_url": "https://mandatoryroomregistration.firebaseio.com",
+    "project_id": "mandatoryroomregistration",
+    "storage_bucket": "mandatoryroomregistration.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838538768122:android:014aa21a0b58f60a5f6343",
+        "android_client_info": {
+          "package_name": "com.example.mandatoryroomregistration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838538768122-jdk6k46903kgrvnljv78vo442u6810et.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mandatoryroomregistration",
+            "certificate_hash": "bc5eb1da28ba18df7c3e680c3915c4caa37d8e01"
+          }
+        },
+        {
+          "client_id": "838538768122-ur714q4uco90tvqfc5brpnvglof69gcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALhOSTwSsl99NhR1SbV4lT4AohIl_W8uw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838538768122-ur714q4uco90tvqfc5brpnvglof69gcv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
