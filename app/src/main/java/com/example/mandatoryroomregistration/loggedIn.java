@@ -58,7 +58,7 @@ public class loggedIn extends AppCompatActivity {
             }
         });
     }
-
+    
     private void populateRecyclerView(List<Rooms> allRooms) {
         RecyclerView recyclerView = findViewById(R.id.LoggedInRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
