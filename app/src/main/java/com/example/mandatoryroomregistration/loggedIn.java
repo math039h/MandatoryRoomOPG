@@ -1,7 +1,10 @@
 package com.example.mandatoryroomregistration;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,7 +43,7 @@ public class loggedIn extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<Rooms> allRooms = response.body();
                     Log.d(LOG_TAG, allRooms.toString());
-                    //populateRecyclerView(allRooms);
+                    populateRecyclerView(allRooms);
                 } else {
                     String message = "Problem " + response.code() + " " + response.message();
                     Log.d(LOG_TAG, message);
@@ -55,21 +58,21 @@ public class loggedIn extends AppCompatActivity {
             }
         });
     }
-/*
+
     private void populateRecyclerView(List<Rooms> allRooms) {
-        RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.LoggedInRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(allBooks);
+        RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(allRooms);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener((view, position, item) -> {
-            Book book = (Book) item;
+            Rooms rooms = (Rooms) item;
             Log.d(LOG_TAG, item.toString());
-            Intent intent = new Intent(MainActivity.this, SingleBookActivity.class);
-            intent.putExtra(SingleBookActivity.BOOK, book);
-            Log.d(LOG_TAG, "putExtra " + book.toString());
+            Intent intent = new Intent(loggedIn.this, SingleBookActivity.class);
+            intent.putExtra(SingleBookActivity.Rooms, rooms);
+            Log.d(LOG_TAG, "putExtra " + rooms.toString());
             startActivity(intent);
         });
-    }*/
+    }
 
     public void BackToMain(View view){
         finish();

@@ -17,4 +17,3 @@ public interface RoomRegistrationService {
     @GET("Rooms/free/{time}")
     Call<List<Rooms>> getAllFreeRooms(@Path("time")int time);
 }
-
