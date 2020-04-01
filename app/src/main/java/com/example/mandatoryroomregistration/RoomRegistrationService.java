@@ -16,4 +16,7 @@ import retrofit2.http.Path;
 public interface RoomRegistrationService {
     @GET("Rooms/free/{time}")
     Call<List<Rooms>> getAllFreeRooms(@Path("time")int time);
+
+    @DELETE("Reservations/{id}")
+    Call<Rooms> deleteBook(@Path("id") int id);
 }

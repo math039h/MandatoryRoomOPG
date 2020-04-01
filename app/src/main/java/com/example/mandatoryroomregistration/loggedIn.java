@@ -67,8 +67,8 @@ public class loggedIn extends AppCompatActivity {
         adapter.setOnItemClickListener((view, position, item) -> {
             Rooms rooms = (Rooms) item;
             Log.d(LOG_TAG, item.toString());
-            Intent intent = new Intent(loggedIn.this, SingleBookActivity.class);
-            intent.putExtra(SingleBookActivity.Rooms, rooms);
+            Intent intent = new Intent(loggedIn.this, SingleRoomActivity.class);
+            intent.putExtra(SingleRoomActivity.ROOM, rooms);
             Log.d(LOG_TAG, "putExtra " + rooms.toString());
             startActivity(intent);
         });
