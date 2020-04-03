@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
@@ -12,36 +12,34 @@
         android:id="@+id/mainEmailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="email"/>
+        android:hint="email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/mainPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="password"/>
+        android:hint="password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/mainCreateAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create a new account"
-        android:onClick="createAccount"/>
+        android:onClick="createAccount"
+        android:text="Create a new account" />
 
     <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="doLogin"
-    android:text="Login"
-    />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="doLogin"
+        android:text="Login" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="SendToLoggedInIfVerified"
-        android:text="Click When Verified"
-        />
+        android:text="Click When Verified" />
 
     <TextView
         android:id="@+id/mainMessageTextView"
