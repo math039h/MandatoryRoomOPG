@@ -17,6 +17,9 @@ public interface RoomRegistrationService {
     @GET("Rooms/free/{time}")
     Call<List<Rooms>> getAllFreeRooms(@Path("time")int time);
 
+    @POST("Reservations")
+    Call<Reservation> saveReservationBody(@Body Reservation book);
+
     @DELETE("Reservations/{id}")
-    Call<Rooms> deleteBook(@Path("id") int id);
+    Call<Reservation> deleteBook(@Path("id") int id);
 }

@@ -1,14 +1,18 @@
 package com.example.mandatoryroomregistration;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -25,6 +29,22 @@ public class loggedIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
         messageView = findViewById(R.id.LoggedInMessageTextView);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> {
+            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            //        .setAction("Action", null).show();
+            Intent intent = new Intent(loggedIn.this, AddReservationActivity.class);
+            startActivity(intent);
+        });
+
+        SwipeRefreshLayout refreshLayout = findViewById(R.id.LoggedInSwiperefresh);
+        refreshLayout.setOnRefreshListener(() -> {
+            getAndShowAllFreeRooms();
+            refreshLayout.setRefreshing(false);
+        });
     }
 
     @Override
@@ -58,7 +78,7 @@ public class loggedIn extends AppCompatActivity {
             }
         });
     }
-    
+
     private void populateRecyclerView(List<Rooms> allRooms) {
         RecyclerView recyclerView = findViewById(R.id.LoggedInRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
