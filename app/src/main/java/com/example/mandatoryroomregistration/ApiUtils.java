@@ -10,4 +10,8 @@ class ApiUtils {
 
         return RetrofitClient.getClient(BASE_URL).create(RoomRegistrationService.class);
     }
+    public static ReservationRegistrationService getReservationRegistrationService() {
+
+        return RetrofitClient.getClient(BASE_URL).create(ReservationRegistrationService.class);
+    }
 }

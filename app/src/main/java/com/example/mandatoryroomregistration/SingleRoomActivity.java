@@ -14,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SingleRoomActivity extends AppCompatActivity {
+public class SingleRoomActivity extends AppCompatActivity {/*
 
     public static final String ROOM = "BOOK";
     private static final String LOG_TAG = "MYROOMS";
@@ -50,7 +50,7 @@ public class SingleRoomActivity extends AppCompatActivity {
     public void backButtonClicked(View view) {
         Log.d(LOG_TAG, "backButtonClicked");
         finish();
-    }
+    }*/
 /*
     public void deleteBookButtonClicked(View view) {
         RoomRegistrationService roomRegistrationService = ApiUtils.getRoomRegistrationService();

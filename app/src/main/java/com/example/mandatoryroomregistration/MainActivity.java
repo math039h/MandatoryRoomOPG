@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         //FirebaseUser user = null;
         if (user != null) {
             Intent intent = new Intent(this, loggedIn.class);
-            intent.putExtra(EXTRA_MESSAGE, user);
+            Toast.makeText(this, "Sending To Logged In", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }
     }

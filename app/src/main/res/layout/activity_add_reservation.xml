@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="From Time 00:00"
-        android:inputType="time" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/addReservationToTimeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="To Time 00:00"
-        android:inputType="time" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/addReservationUserIdEditText"

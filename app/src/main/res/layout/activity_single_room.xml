@@ -29,72 +29,72 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:labelFor="@id/singleRoomNameEditText"
-                    android:text="Title" />
+                    android:text="Name" />
 
                 <EditText
                     android:id="@+id/singleRoomNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Name"
                     android:inputType="textCapWords" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:labelFor="@+id/singleRoomDescriptionEditText"
-                    android:text="Author" />
+                    android:text="Description" />
 
                 <EditText
                     android:id="@+id/singleRoomDescriptionEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Author"
+                    android:hint="Description"
                     android:inputType="textCapWords" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:labelFor="@id/singleRoomRemarksEditText"
-                    android:text="Puhlisher" />
+                    android:text="Remarks" />
 
                 <EditText
                     android:id="@+id/singleRoomRemarksEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher"
+                    android:hint="Remarks"
                     android:inputType="textCapWords" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:labelFor="@+id/singleRoomCapacityEditText"
-                    android:text="Price" />
+                    android:text="Capacity" />
 
                 <EditText
                     android:id="@+id/singleRoomCapacityEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Price"
+                    android:hint="Capacity"
                     android:inputType="numberDecimal" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="updateButtonClicked"
-
                     android:text="Update" />
-
+                <!--android:onClick="updateButtonClicked" />-->
+                
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="deleteBookButtonClicked"
                     android:text="Delete" />
+                <!--android:onClick="deleteBookButtonClicked"/>-->
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="backButtonClicked"
                     android:text="Back" />
+                <!--android:onClick="backButtonClicked"/>-->
+
 
                 <TextView
                     android:id="@+id/singleRoomMessageTextView"

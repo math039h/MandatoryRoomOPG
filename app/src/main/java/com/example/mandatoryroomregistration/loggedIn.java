@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -20,18 +22,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+
 public class loggedIn extends AppCompatActivity {
     private TextView messageView;
     private static final String LOG_TAG = "Rooms";
+    private FirebaseUser mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
+        //getAndShowAllFreeRooms();
         messageView = findViewById(R.id.LoggedInMessageTextView);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        getAllRooms();
+        //FirebaseUser user = mAuth.getInstance().getCurrentUser();
 
+/*
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -44,18 +53,19 @@ public class loggedIn extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(() -> {
             getAndShowAllFreeRooms();
             refreshLayout.setRefreshing(false);
-        });
+        });*/
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        getAndShowAllFreeRooms();
+    public void loggedInReservateRoomsFloatingAButton(View view) {
+        //Intent intent = new Intent(this, AddReservationActivity.class);
+        //startActivity(intent);
     }
 
-    private void getAndShowAllFreeRooms() {
+    private void getAllRooms() {
         RoomRegistrationService roomRegistrationService = ApiUtils.getRoomRegistrationService();
-        Call<List<Rooms>> getAllRoomsCall = roomRegistrationService.getAllFreeRooms(573468);
+        Call<List<Rooms>> getAllRoomsCall = roomRegistrationService.getAllRooms();
+        TextView messageView = findViewById(R.id.LoggedInMessageTextView);
+
         messageView.setText("");
         getAllRoomsCall.enqueue(new Callback<List<Rooms>>() {
             @Override
@@ -79,6 +89,38 @@ public class loggedIn extends AppCompatActivity {
         });
     }
 
+    /*@Override
+    public void onStart() {
+        super.onStart();
+        //getAndShowAllFreeRooms();
+    }*/
+
+    /*private void getAndShowAllFreeRooms() {
+        RoomRegistrationService roomRegistrationService = ApiUtils.getRoomRegistrationService();
+        Call<List<Rooms>> getAllRoomsCall = roomRegistrationService.getAllFreeRooms(573468);
+        messageView.setText("");
+        getAllRoomsCall.enqueue(new Callback<List<Rooms>>() {
+            @Override
+            public void onResponse(Call<List<Rooms>> call, Response<List<Rooms>> response) {
+                if (response.isSuccessful()) {
+                    List<Rooms> allRooms = response.body();
+                    Log.d(LOG_TAG, allRooms.toString());
+                    populateRecyclerView(allRooms);
+                } else {
+                    String message = "Problem " + response.code() + " " + response.message();
+                    Log.d(LOG_TAG, message);
+                    messageView.setText(message);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Rooms>> call, Throwable t) {
+                Log.e(LOG_TAG, t.getMessage());
+                messageView.setText(t.getMessage());
+            }
+        });
+    }*/
+
     private void populateRecyclerView(List<Rooms> allRooms) {
         RecyclerView recyclerView = findViewById(R.id.LoggedInRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -88,7 +130,7 @@ public class loggedIn extends AppCompatActivity {
             Rooms rooms = (Rooms) item;
             Log.d(LOG_TAG, item.toString());
             Intent intent = new Intent(loggedIn.this, SingleRoomActivity.class);
-            intent.putExtra(SingleRoomActivity.ROOM, rooms);
+            //intent.putExtra(SingleRoomActivity.ROOM, rooms);
             Log.d(LOG_TAG, "putExtra " + rooms.toString());
             startActivity(intent);
         });

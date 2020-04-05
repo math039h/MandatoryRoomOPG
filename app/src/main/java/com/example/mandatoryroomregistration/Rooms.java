@@ -27,20 +27,17 @@ class Rooms implements Serializable {
     public Rooms() {
     }
 
-    public Rooms(String name, String description, Integer capacity, String remarks) {
+    public Rooms(Integer id, String name, String description, Integer capacity, String remarks) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.capacity = capacity;
         this.remarks = remarks;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
     public String getName() {
         return name;
@@ -77,7 +74,12 @@ class Rooms implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return name + ": " + description + " " + capacity + ", " + remarks;
+        return "ID: " + id + '\'' +
+                ", Name: " + name + '\'' +
+                ", Description: " + description + '\'' +
+                ", Capacity: " + capacity + '\'' +
+                ", Remarks: " + remarks + '\'';
+
     }
 }
 

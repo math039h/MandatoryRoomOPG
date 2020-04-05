@@ -14,10 +14,10 @@ class Reservation implements Serializable {
     private Integer id;
     @SerializedName("fromTime")
     @Expose
-    private Time fromTime;
+    private Integer fromTime;
     @SerializedName("toTime")
     @Expose
-    private Time toTime;
+    private Integer toTime;
     @SerializedName("userId")
     @Expose
     private String userId;
@@ -31,7 +31,7 @@ class Reservation implements Serializable {
     public Reservation() {
     }
 
-    public Reservation(Time fromTime, Time toTime, String userId, String purpose, Integer roomId) {
+    public Reservation(Integer fromTime, Integer toTime, String userId, String purpose, Integer roomId) {
         this.fromTime = fromTime;
         this.toTime = toTime;
         this.userId = userId;
@@ -47,19 +47,19 @@ class Reservation implements Serializable {
         this.id = id;
     }
 
-    public Time getFromTime() {
+    public Integer getFromTime() {
         return fromTime;
     }
 
-    public void setFromTime(Time fromTime) {
+    public void setFromTime(Integer fromTime) {
         this.fromTime = fromTime;
     }
 
-    public Time getToTime() {
+    public Integer getToTime() {
         return toTime;
     }
 
-    public void setToTime(Time toTime) {
+    public void setToTime(Integer toTime) {
         this.toTime = toTime;
     }
 
@@ -86,7 +86,12 @@ class Reservation implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return fromTime + ": " + toTime + " " + userId + ", " + purpose + ", " + roomId;
+        return "From : " + fromTime + '\'' +
+                ", To: " + toTime + '\'' +
+                ", User ID: " + userId + '\'' +
+                ", Purpose: " + purpose + '\'' +
+                ", Room ID: " + roomId + '\'';
+
     }
 }
 

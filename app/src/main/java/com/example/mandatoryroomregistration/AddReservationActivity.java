@@ -1,4 +1,4 @@
-package com.example.mandatoryroomregistration;
+/*package com.example.mandatoryroomregistration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,17 +38,17 @@ class AddReservationActivity extends AppCompatActivity {
         String purpose = purposeField.getText().toString().trim();
         String roomIdString = roomIdField.getText().toString().trim();
 
-        Time fromTime;
+        Integer fromTime;
         try {
-            fromTime = Time.valueOf(fromTimeString);
+            fromTime = Integer.parseInt(fromTimeString);
         } catch (TimeFormatException ex) {
             formTimeField.setError("Not a valid Time Format");
             return;
         }
 
-        Time toTime;
+        Integer toTime;
         try {
-            toTime = Time.valueOf(toTimeString);
+            toTime = Integer.parseInt(toTimeString);
         } catch (TimeFormatException ex) {
             toTimeField.setError("Not a valid Time Format");
             return;
@@ -70,13 +70,13 @@ class AddReservationActivity extends AppCompatActivity {
                 .build();
 
         BookStoreService bookStoreService = retrofit.create(BookStoreService.class);
-*/
-        RoomRegistrationService RoomRegistrationService = ApiUtils.getRoomRegistrationService();
+
+        ReservationRegistrationService roomRegistrationService = ApiUtils.getReservationRegistrationService();
 
         // Call<Book> saveBookCall = bookStoreService.saveBook(fromTimeString, toTime, userId, price);
         Reservation reservation = new Reservation(fromTime, toTime, userId, purpose, roomId);
 
-        Call<Reservation> saveReservationCall = RoomRegistrationService.saveReservationBody(reservation);
+        Call<Reservation> saveReservationCall = roomRegistrationService.saveReservationBody(reservation);
         saveReservationCall.enqueue(new Callback<Reservation>() {
             @Override
             public void onResponse(Call<Reservation> call, Response<Reservation> response) {
@@ -100,3 +100,4 @@ class AddReservationActivity extends AppCompatActivity {
     }
 }
 
+        */
