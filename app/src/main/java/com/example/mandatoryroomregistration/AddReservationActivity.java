@@ -1,4 +1,4 @@
-/*package com.example.mandatoryroomregistration;
+package com.example.mandatoryroomregistration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,6 @@ import android.util.TimeFormatException;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.sql.Time;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,7 +59,7 @@ class AddReservationActivity extends AppCompatActivity {
             roomIdField.setError("Not a valid Number");
             return;
         }
-/*
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://anbo-restserviceproviderbooks.azurewebsites.net/Service1.svc/")
                 // https://futurestud.io/tutorials/retrofit-2-adding-customizing-the-gson-converter
@@ -100,4 +98,3 @@ class AddReservationActivity extends AppCompatActivity {
     }
 }
 
-        */

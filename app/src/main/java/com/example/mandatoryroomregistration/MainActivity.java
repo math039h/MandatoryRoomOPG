@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.d(TAG, user.getEmail());
                             updateUI(user);
+                            LogInSucces(view);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -107,15 +108,21 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    public void SendToLoggedInIfVerified(View view) {
-        FirebaseUser user = mAuth.getCurrentUser();
+    public void LogInSucces(View view) {
+        Intent intent = new Intent(this, loggedIn.class);
+        startActivity(intent);
+    }
+
+    /*public void SendToLoggedInIfVerified(View view) {
+        FirebaseUser user = mAuth.getInstance().getCurrentUser();
         //FirebaseUser user = null;
         if (user != null) {
+            Log.d(TAG, "Test");
             Intent intent = new Intent(this, loggedIn.class);
             Toast.makeText(this, "Sending To Logged In", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }
-    }
+    }*/
 
     /*private void getCurrentUserData(View view) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

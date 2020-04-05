@@ -57,8 +57,8 @@ public class loggedIn extends AppCompatActivity {
     }
 
     public void loggedInReservateRoomsFloatingAButton(View view) {
-        //Intent intent = new Intent(this, AddReservationActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, AddReservationActivity.class);
+        startActivity(intent);
     }
 
     private void getAllRooms() {
