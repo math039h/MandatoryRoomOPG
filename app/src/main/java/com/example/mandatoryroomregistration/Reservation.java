@@ -32,6 +32,7 @@ class Reservation implements Serializable {
     }
 
     public Reservation(Integer fromTime, Integer toTime, String userId, String purpose, Integer roomId) {
+        super();
         this.fromTime = fromTime;
         this.toTime = toTime;
         this.userId = userId;
@@ -83,15 +84,18 @@ class Reservation implements Serializable {
 
     public void setRoomId(Integer roomId) { this.roomId = roomId; }
 
-    @NonNull
+/*
     @Override
     public String toString() {
-        return "From : " + fromTime + '\'' +
-                ", To: " + toTime + '\'' +
+        return  "From : " + fromTime + '\'' +
+                " To, " + toTime + '\'' +
                 ", User ID: " + userId + '\'' +
                 ", Purpose: " + purpose + '\'' +
                 ", Room ID: " + roomId + '\'';
 
-    }
+    }*/
+    @NonNull
+    @Override
+    public String toString() { return fromTime + ": " + toTime + " " + userId + ", " + purpose + ", " + roomId;}
 }
 

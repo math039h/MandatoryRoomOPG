@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".SingleReservationActivity"></activity>
         <activity android:name=".AddReservationActivity" />
         <activity android:name=".SingleRoomActivity" />
         <activity android:name=".loggedIn" />

@@ -71,7 +71,7 @@ class Rooms implements Serializable {
         this.remarks = remarks;
     }
 
-    @NonNull
+    /*
     @Override
     public String toString() {
         return "ID: " + id + '\'' +
@@ -80,6 +80,9 @@ class Rooms implements Serializable {
                 ", Capacity: " + capacity + '\'' +
                 ", Remarks: " + remarks + '\'';
 
-    }
+    }*/
+    @NonNull
+    @Override
+    public String toString() { return name + ": " + description + " " + capacity + ", " + remarks;}
 }
 

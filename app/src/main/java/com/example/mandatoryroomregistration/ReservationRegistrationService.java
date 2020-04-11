@@ -11,11 +11,11 @@ import retrofit2.http.Path;
 
 
 public interface ReservationRegistrationService {
-    @GET("Reservations/room/{id}")
-    Call<List<Rooms>> getRoomReservations(@Path("time") int time);
+    @GET("Reservations")
+    Call<List<Reservation>> ShowAllReservations();
 
     @POST("Reservations")
-    Call<Reservation> saveReservationBody(@Body Reservation book);
+    Call<Integer> saveReservationBody(@Body Reservation reservation);
 
     @DELETE("Reservations/{id}")
     Call<Reservation> deleteBook(@Path("id") int id);

@@ -14,37 +14,40 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SingleRoomActivity extends AppCompatActivity {
+public class SingleReservationActivity extends AppCompatActivity {
 
-    public static final String ROOM = "BOOK";
-    private static final String LOG_TAG = "MYROOMS";
-    private Rooms originalRoom;
+    public static final String ROOM = "BOOKRESERVATION";
+    private static final String LOG_TAG = "MYROOMSRESERVATION";
+    private Reservation originalReservation;
     private TextView messageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_room);
-        messageView = findViewById(R.id.singleRoomMessageTextView);
+        messageView = findViewById(R.id.singleReservationMessageTextView);
 
         Intent intent = getIntent();
-        originalRoom = (Rooms) intent.getSerializableExtra(ROOM);
+        originalReservation = (Reservation) intent.getSerializableExtra(ROOM);
 
-        Log.d(LOG_TAG, originalRoom.toString());
-        TextView headingView = findViewById(R.id.singleRoomHeadingTextview);
-        headingView.setText("Room Id=" + originalRoom.getId());
+        Log.d(LOG_TAG, originalReservation.toString());
+        TextView headingView = findViewById(R.id.singleReservationHeadingTextview);
+        headingView.setText("Reservation Id=" + originalReservation.getId());
 
-        EditText titleView = findViewById(R.id.singleRoomNameEditText);
-        titleView.setText(originalRoom.getName());
+        EditText fromTimeView = findViewById(R.id.singleReservationFromTimeEditText);
+        fromTimeView.setText(Integer.toString(originalReservation.getFromTime()));
 
-        EditText authorView = findViewById(R.id.singleRoomDescriptionEditText);
-        authorView.setText(originalRoom.getDescription());
+        EditText toTimeView = findViewById(R.id.singleReservationToTimeEditText);
+        toTimeView.setText(Integer.toString(originalReservation.getToTime()));
 
-        EditText priceView = findViewById(R.id.singleRoomCapacityEditText);
-        priceView.setText(Double.toString(originalRoom.getCapacity()));
+        EditText priceView = findViewById(R.id.singleReservationUserIdEditText);
+        priceView.setText(originalReservation.getUserId());
 
-        EditText publisherView = findViewById(R.id.singleRoomRemarksEditText);
-        publisherView.setText(originalRoom.getRemarks());
+        EditText purposeView = findViewById(R.id.singleReservationPurposeEditText);
+        purposeView.setText(originalReservation.getPurpose());
+
+        EditText roomIdView = findViewById(R.id.singleReservationRoomIdEditText);
+        roomIdView.setText(originalReservation.getRoomId());
     }
 
     public void backButtonClicked(View view) {

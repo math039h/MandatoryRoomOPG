@@ -48,16 +48,18 @@ public class loggedIn extends AppCompatActivity {
             Intent intent = new Intent(loggedIn.this, AddReservationActivity.class);
             startActivity(intent);
         });
-
+*/
         SwipeRefreshLayout refreshLayout = findViewById(R.id.LoggedInSwiperefresh);
         refreshLayout.setOnRefreshListener(() -> {
-            getAndShowAllFreeRooms();
+            getAllRooms();
             refreshLayout.setRefreshing(false);
-        });*/
+        });
     }
 
     public void loggedInReservateRoomsFloatingAButton(View view) {
+        Log.d(LOG_TAG, "LoggedIn Intent Test 1");
         Intent intent = new Intent(this, AddReservationActivity.class);
+        Log.d(LOG_TAG, "LoggedIn Intent");
         startActivity(intent);
     }
 
@@ -130,7 +132,7 @@ public class loggedIn extends AppCompatActivity {
             Rooms rooms = (Rooms) item;
             Log.d(LOG_TAG, item.toString());
             Intent intent = new Intent(loggedIn.this, SingleRoomActivity.class);
-            //intent.putExtra(SingleRoomActivity.ROOM, rooms);
+            intent.putExtra(SingleRoomActivity.ROOM, rooms);
             Log.d(LOG_TAG, "putExtra " + rooms.toString());
             startActivity(intent);
         });

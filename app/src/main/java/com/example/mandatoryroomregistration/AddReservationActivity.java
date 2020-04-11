@@ -1,25 +1,41 @@
 package com.example.mandatoryroomregistration;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TimeFormatException;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-class AddReservationActivity extends AppCompatActivity {
+public class AddReservationActivity extends AppCompatActivity {
     private static final String LOG_TAG = "RESERVATION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(LOG_TAG, "Test AddReservationAtivity");
         setContentView(R.layout.activity_add_reservation);
+        Log.d(LOG_TAG, "Test AddR 2");
+        getAllReservations();
+
+        SwipeRefreshLayout refreshLayout = findViewById(R.id.AddReservationSwipeRefresh);
+        refreshLayout.setOnRefreshListener(() -> {
+            getAllReservations();
+            refreshLayout.setRefreshing(false);
+        });
     }
 
     public void addReservationButtonClicked(View view) {
@@ -30,7 +46,6 @@ class AddReservationActivity extends AppCompatActivity {
         EditText roomIdField = findViewById(R.id.addReservationRoomIdEditText);
 
         String fromTimeString = formTimeField.getText().toString().trim();
-        // TODO check if fromTimeString is empty string?
         String toTimeString = toTimeField.getText().toString().trim();
         String userId = userIdField.getText().toString().trim();
         String purpose = purposeField.getText().toString().trim();
@@ -60,29 +75,19 @@ class AddReservationActivity extends AppCompatActivity {
             return;
         }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://anbo-restserviceproviderbooks.azurewebsites.net/Service1.svc/")
-                // https://futurestud.io/tutorials/retrofit-2-adding-customizing-the-gson-converter
-                // Gson is no longer the default converter
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        BookStoreService bookStoreService = retrofit.create(BookStoreService.class);
-
         ReservationRegistrationService roomRegistrationService = ApiUtils.getReservationRegistrationService();
 
-        // Call<Book> saveBookCall = bookStoreService.saveBook(fromTimeString, toTime, userId, price);
+        //Call<Reservation> saveReservationCall = ReservationRegistrationService.saveReservation(fromTime, toTime, userId, price);
         Reservation reservation = new Reservation(fromTime, toTime, userId, purpose, roomId);
 
-        Call<Reservation> saveReservationCall = roomRegistrationService.saveReservationBody(reservation);
-        saveReservationCall.enqueue(new Callback<Reservation>() {
+        Call<Integer> saveReservationCall = roomRegistrationService.saveReservationBody(reservation);
+        saveReservationCall.enqueue(new Callback<Integer>() {
             @Override
-            public void onResponse(Call<Reservation> call, Response<Reservation> response) {
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if (response.isSuccessful()) {
-                    Reservation theNewResevation = response.body();
+                    Integer theNewResevation = response.body();
                     Log.d("RESERVATION", theNewResevation.toString());
-                    Toast.makeText(AddReservationActivity.this, "Reservation added, id: " + theNewResevation.getId(), Toast.LENGTH_SHORT).show();
-//                    Snackbar.make(view, "Book added, id: " + theNewBook.getId(), Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(AddReservationActivity.this, "Reservation added, id: " + theNewResevation, Toast.LENGTH_SHORT).show();
                 } else {
                     String problem = "Problem: " + response.code() + " " + response.message();
                     Log.e("RESERVATION", problem);
@@ -91,9 +96,51 @@ class AddReservationActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Reservation> call, Throwable t) {
+            public void onFailure(Call<Integer> call, Throwable t) {
                 Log.e("RESERVATION", t.getMessage());
             }
+        });
+    }
+
+    public void getAllReservations(){
+        ReservationRegistrationService reservationRegistrationService = ApiUtils.getReservationRegistrationService();
+        Call<List<Reservation>> getAllReservationsCall = reservationRegistrationService.ShowAllReservations();
+        TextView messageView = findViewById(R.id.singleReservationMessageTextView);
+
+        //messageView.setText("");
+        getAllReservationsCall.enqueue(new Callback<List<Reservation>>() {
+            @Override
+            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
+                if (response.isSuccessful()) {
+                    List<Reservation> allReservations = response.body();
+                    Log.d(LOG_TAG, allReservations.toString());
+                    populateRecyclerView(allReservations);
+                } else {
+                    String message = "Problem " + response.code() + " " + response.message();
+                    Log.d(LOG_TAG, message);
+                    messageView.setText(message);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Reservation>> call, Throwable t) {
+                Log.e(LOG_TAG, t.getMessage());
+                messageView.setText(t.getMessage());
+            }
+        });
+    }
+    private void populateRecyclerView(List<Reservation> allReservations) {
+        RecyclerView recyclerView = findViewById(R.id.AddReservationRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(allReservations);
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener((view, position, item) -> {
+            Reservation reservation = (Reservation) item;
+            Log.d(LOG_TAG, item.toString());
+            Intent intent = new Intent(this, SingleReservationActivity.class);
+            intent.putExtra(SingleReservationActivity.ROOM, reservation);
+            Log.d(LOG_TAG, "putExtra " + reservation.toString());
+            startActivity(intent);
         });
     }
 }

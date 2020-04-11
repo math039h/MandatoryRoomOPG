@@ -55,7 +55,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 -->
-    <!-- <include layout="@layout/content_loggedin" /> -->
+     <include layout="@layout/content_loggedin" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         style="@style/Widget.MaterialComponents.FloatingActionButton"

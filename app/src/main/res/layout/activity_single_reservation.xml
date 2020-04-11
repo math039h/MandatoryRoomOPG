@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/singleRoomHeadingTextview"
+            android:id="@+id/singleReservationHeadingTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -28,76 +28,89 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/singleRoomNameEditText"
-                    android:text="Name" />
+                    android:labelFor="@id/singleReservationFromTimeEditText"
+                    android:text="From Time" />
 
                 <EditText
-                    android:id="@+id/singleRoomNameEditText"
+                    android:id="@+id/singleReservationFromTimeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="From Time hh:mm"
                     android:inputType="textCapWords" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/singleRoomDescriptionEditText"
-                    android:text="Description" />
+                    android:labelFor="@+id/singleReservationToTimeEditText"
+                    android:text="To Time" />
 
                 <EditText
-                    android:id="@+id/singleRoomDescriptionEditText"
+                    android:id="@+id/singleReservationToTimeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Description"
+                    android:hint="To Time hh:mm"
                     android:inputType="textCapWords" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/singleRoomRemarksEditText"
-                    android:text="Remarks" />
+                    android:labelFor="@id/singleReservationUserIdEditText"
+                    android:text="User Id" />
 
                 <EditText
-                    android:id="@+id/singleRoomRemarksEditText"
+                    android:id="@+id/singleReservationUserIdEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Remarks"
+                    android:hint="User Id"
                     android:inputType="textCapWords" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/singleRoomCapacityEditText"
-                    android:text="Capacity" />
+                    android:labelFor="@+id/singleReservationPurposeEditText"
+                    android:text="Purpose" />
 
                 <EditText
-                    android:id="@+id/singleRoomCapacityEditText"
+                    android:id="@+id/singleReservationPurposeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Capacity"
+                    android:hint="Purpose"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/singleReservationRoomIdEditText"
+                    android:text="Room Id" />
+
+                <EditText
+                    android:id="@+id/singleReservationRoomIdEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Room Id"
                     android:inputType="numberDecimal" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Update"
-                android:onClick="updateButtonClicked" />
+                    android:onClick="updateButtonClicked" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Delete"
-                android:onClick="deleteReservationButtonClicked"/>
+                    android:onClick="deleteReservationButtonClicked"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Back"
-                android:onClick="backButtonClicked"/>
+                    android:onClick="backButtonClicked"/>
 
 
                 <TextView
-                    android:id="@+id/singleRoomMessageTextView"
+                    android:id="@+id/singleReservationMessageTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

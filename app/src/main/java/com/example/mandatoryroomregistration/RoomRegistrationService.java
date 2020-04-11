@@ -19,4 +19,7 @@ public interface RoomRegistrationService {
 
     @GET("Rooms")
     Call<List<Rooms>> getAllRooms();
+
+    @GET("Reservations/room/{id}")
+    Call<List<Rooms>> getRoomReservations(@Path("time") int time);
 }
