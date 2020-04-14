@@ -2,8 +2,6 @@ package com.example.mandatoryroomregistration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,14 +16,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -77,13 +67,22 @@ public class MainActivity extends AppCompatActivity {
 
         // ...
     }
+    public void defaultLogin(View view) {
+        EditText EmailField = findViewById(R.id.mainEmailEditText);
+        EditText PasswordField = findViewById(R.id.mainPasswordEditText);
+        EmailField.setText("test@test.dk");
+        PasswordField.setText("testtest");
+    }
 
     public void doLogin(View view) {
 
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
+        defaultLogin(view);
         String email = EmailField.getText().toString();
         String password = PasswordField.getText().toString();
+
+
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.d(TAG, user.getEmail());
                             updateUI(user);
-                            LogInSucces(view);
+                            LogInSuccess(view);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -108,7 +107,11 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    public void LogInSucces(View view) {
+    public void LogInSuccess(View view) {
+        EditText EmailField = findViewById(R.id.mainEmailEditText);
+        EditText PasswordField = findViewById(R.id.mainPasswordEditText);
+        EmailField.setText("");
+        PasswordField.setText("");
         Intent intent = new Intent(this, loggedIn.class);
         startActivity(intent);
     }

@@ -84,7 +84,7 @@ class Reservation implements Serializable {
 
     public void setRoomId(Integer roomId) { this.roomId = roomId; }
 
-/*
+
     @Override
     public String toString() {
         return  "From : " + fromTime + '\'' +
@@ -93,9 +93,9 @@ class Reservation implements Serializable {
                 ", Purpose: " + purpose + '\'' +
                 ", Room ID: " + roomId + '\'';
 
-    }*/
-    @NonNull
+    }
+    /*@NonNull
     @Override
-    public String toString() { return fromTime + ": " + toTime + " " + userId + ", " + purpose + ", " + roomId;}
+    public String toString() { return fromTime + ": " + toTime + " " + userId + ", " + purpose + ", " + roomId;} */
 }
 

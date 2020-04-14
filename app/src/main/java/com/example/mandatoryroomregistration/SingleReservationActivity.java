@@ -16,8 +16,10 @@ import retrofit2.Response;
 
 public class SingleReservationActivity extends AppCompatActivity {
 
-    public static final String ROOM = "BOOKRESERVATION";
+    //public static final String ROOM = "ROOM";
+    public static final String RESERVATION = "RESERVATION";
     private static final String LOG_TAG = "MYROOMSRESERVATION";
+    //private Rooms originalRoom;
     private Reservation originalReservation;
     private TextView messageView;
 
@@ -28,26 +30,30 @@ public class SingleReservationActivity extends AppCompatActivity {
         messageView = findViewById(R.id.singleReservationMessageTextView);
 
         Intent intent = getIntent();
-        originalReservation = (Reservation) intent.getSerializableExtra(ROOM);
+        originalReservation = (Reservation) intent.getSerializableExtra(RESERVATION);
+        Log.d(LOG_TAG, "originalReservation " + originalReservation);
+        //Intent intentRoom = getIntent();
+        //originalRoom = (Rooms) intentRoom.getSerializableExtra(ROOM);
 
         Log.d(LOG_TAG, originalReservation.toString());
-        TextView headingView = findViewById(R.id.singleReservationHeadingTextview);
-        headingView.setText("Reservation Id=" + originalReservation.getId());
-
+        //TextView headingView = findViewById(R.id.singleReservationHeadingTextview);
+        Log.d(LOG_TAG, "efter textview headingview");
+        //headingView.setText("Reservation Id=" + originalReservation.getId());
+        Log.d(LOG_TAG, "efter headingview set text");
         EditText fromTimeView = findViewById(R.id.singleReservationFromTimeEditText);
         fromTimeView.setText(Integer.toString(originalReservation.getFromTime()));
-
+        Log.d(LOG_TAG, "44");
         EditText toTimeView = findViewById(R.id.singleReservationToTimeEditText);
         toTimeView.setText(Integer.toString(originalReservation.getToTime()));
-
+        Log.d(LOG_TAG, "After time view");
         EditText priceView = findViewById(R.id.singleReservationUserIdEditText);
         priceView.setText(originalReservation.getUserId());
-
+        Log.d(LOG_TAG, "50 linje");
         EditText purposeView = findViewById(R.id.singleReservationPurposeEditText);
         purposeView.setText(originalReservation.getPurpose());
-
+        Log.d(LOG_TAG, "53");
         EditText roomIdView = findViewById(R.id.singleReservationRoomIdEditText);
-        roomIdView.setText(originalReservation.getRoomId());
+        roomIdView.setText(Integer.toString(originalReservation.getRoomId()));
     }
 
     public void backButtonClicked(View view) {
@@ -57,8 +63,8 @@ public class SingleReservationActivity extends AppCompatActivity {
 /*
     public void deleteReservationButtonClicked(View view) {
         ReservationRegistrationService reservationRegistrationService = ApiUtils.getReservationRegistrationService();
-        int roomId = originalRoom.getId();
-        Call<Reservation> deleteReservationCall = reservationRegistrationService.deleteReservationButtonClicked(roomId);
+        int reservationId = originalReservation.getId();
+        Call<Reservation> deleteReservationCall = reservationRegistrationService.deleteReservation(reservationId);
         messageView.setText("");
 
         deleteBookCall.enqueue(new Callback<Book>() {
@@ -85,7 +91,7 @@ public class SingleReservationActivity extends AppCompatActivity {
             }
         });
     }
-
+/*
     public void updateButtonClicked(View view) {
         Log.d(LOG_TAG, "anotherButtonClicked");
         Toast.makeText(this, "anotherButtonClicked", Toast.LENGTH_SHORT).show();

@@ -18,5 +18,5 @@ public interface ReservationRegistrationService {
     Call<Integer> saveReservationBody(@Body Reservation reservation);
 
     @DELETE("Reservations/{id}")
-    Call<Reservation> deleteBook(@Path("id") int id);
+    Call<Reservation> deleteReservation(@Path("id") int id);
 }
