@@ -1,139 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".AddReservationActivity">
 
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".AddReservationActivity">
-
-        <LinearLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/addReservationFromTimeEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="From Time 00:00"
-                    android:inputType="number" />
-
-                <EditText
-                    android:id="@+id/addReservationToTimeEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="To Time 00:00"
-                    android:inputType="number" />
-
-                <EditText
-                    android:id="@+id/addReservationUserIdEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="User Id"
-                    android:inputType="text" />
-
-                <EditText
-                    android:id="@+id/addReservationPurposeEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Purpose"
-                    android:inputType="text" />
-
-                <EditText
-                    android:id="@+id/addReservationRoomIdEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="RoomId"
-                    android:inputType="number" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="addReservationButtonClicked"
-                    android:text="Add" />
-
-                <TextView
-                    android:id="@+id/addReservationMessageTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-            <!--
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/deleteReservationByIdEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Input a roomId to be deleted"
-                            android:inputType="text" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="deleteReservationButtonClicked"
-                            android:text="Delete" />
-
-                        <TextView
-                            android:id="@+id/deleteReservationMessageTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-            -->
-            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/addReservationFromTimeEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="From Time 00:00"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/addReservationToTimeEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="To Time 00:00"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/addReservationUserIdEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="User Id"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/addReservationPurposeEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Purpose"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/addReservationRoomIdEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="RoomId"
+                        android:inputType="number" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="addReservationButtonClicked"
+                        android:text="Add" />
+
+                    <TextView
+                        android:id="@+id/addReservationMessageTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <!--
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/deleteReservationByIdEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Input a roomId to be deleted"
+                                android:inputType="text" />
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="deleteReservationButtonClicked"
+                                android:text="Delete" />
+
+                            <TextView
+                                android:id="@+id/deleteReservationMessageTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="All Room Resevations"
+                        android:textSize="35dp" />
+
+                </LinearLayout>
+
+
+                <include layout="@layout/content_activity_add_reservation" />
+
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="All Room Resevations"
-                    android:textSize="35dp" />
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/AddReservationMessageTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/AddReservationRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="1000dp"
+                        android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
             </LinearLayout>
-
-            <include layout="@layout/content_activity_add_reservation" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/AddReservationMessageTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/AddReservationRecyclerView"
-                    android:layout_width="350dp"
-                    android:layout_height="500dp"
-                    android:layout_gravity="center_vertical" />
-
-            </LinearLayout>
-            </ScrollView>
-
-        </LinearLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </TableLayout>
+</ScrollView>

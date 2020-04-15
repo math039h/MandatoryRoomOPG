@@ -9,6 +9,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,7 +26,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-
 public class loggedIn extends AppCompatActivity {
     private TextView messageView;
     private static final String LOG_TAG = "Rooms";
@@ -33,6 +35,8 @@ public class loggedIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         //getAndShowAllFreeRooms();
         messageView = findViewById(R.id.LoggedInMessageTextView);
         //Toolbar toolbar = findViewById(R.id.toolbar);
@@ -54,6 +58,25 @@ public class loggedIn extends AppCompatActivity {
             getAllRooms();
             refreshLayout.setRefreshing(false);
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menuitem, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.LoggedInAppBarLogout) {
+            //FirebaseAuth.getInstance().signOut();
+            //Intent intent = new Intent(this, MainActivity.class);
+            //startActivity(intent);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void loggedInReservateRoomsFloatingAButton(View view) {
@@ -138,7 +161,7 @@ public class loggedIn extends AppCompatActivity {
         });
     }
 
-    public void BackToMain(View view){
+    public void BackToMain(View view) {
         finish();
     }
 }

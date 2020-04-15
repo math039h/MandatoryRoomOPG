@@ -35,6 +35,7 @@ public class AddReservationActivity extends AppCompatActivity {
 
         SwipeRefreshLayout refreshLayout = findViewById(R.id.AddReservationSwipeRefresh);
         refreshLayout.setOnRefreshListener(() -> {
+            refreshLayout.setRefreshing(true);
             getAllReservations();
             refreshLayout.setRefreshing(false);
         });
