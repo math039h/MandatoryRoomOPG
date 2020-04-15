@@ -1,5 +1,6 @@
 package com.example.mandatoryroomregistration;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,6 +38,8 @@ public class loggedIn extends AppCompatActivity {
         setContentView(R.layout.activity_logged_in);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        ActionBar appBar = getSupportActionBar();
+        appBar.setTitle("My App Bar");
         //getAndShowAllFreeRooms();
         messageView = findViewById(R.id.LoggedInMessageTextView);
         //Toolbar toolbar = findViewById(R.id.toolbar);

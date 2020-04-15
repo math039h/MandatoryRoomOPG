@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ...
     }
+
     public void defaultLogin(View view) {
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
@@ -78,33 +79,38 @@ public class MainActivity extends AppCompatActivity {
 
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
-        defaultLogin(view);
+        //defaultLogin(view);
         String email = EmailField.getText().toString();
         String password = PasswordField.getText().toString();
+        String emptyString = "";
+        String problem = "Problem: ";
+        if (email == emptyString || password == emptyString) {
+            Toast.makeText(this, problem, Toast.LENGTH_SHORT).show();
 
+        }
+        else {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Log.d(TAG, user.getEmail());
+                                updateUI(user);
+                                LogInSuccess(view);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI(null);
+                            }
 
-
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d(TAG, user.getEmail());
-                            updateUI(user);
-                            LogInSuccess(view);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
+                    });
+        }
     }
 
     public void LogInSuccess(View view) {
