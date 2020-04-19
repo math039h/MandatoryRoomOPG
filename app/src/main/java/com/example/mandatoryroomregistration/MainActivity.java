@@ -79,22 +79,18 @@ public class MainActivity extends AppCompatActivity {
 
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
+        TextView ErrorMesseageField = findViewById(R.id.mainMessageTextView);
         //defaultLogin(view);
         String email = EmailField.getText().toString();
         String password = PasswordField.getText().toString();
-        String emptyString = "";
         String problem = "Problem: ";
-        if (email == emptyString || password == emptyString) {
-            Toast.makeText(this, problem, Toast.LENGTH_SHORT).show();
-
-        }
-        else {
+        String errorMesseage = ErrorMesseageField.getText().toString();
+        if (email.length() > 5 && password.length() >= 8) {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Log.d(TAG, user.getEmail());
                                 updateUI(user);
@@ -104,12 +100,15 @@ public class MainActivity extends AppCompatActivity {
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
+                                //ErrorMesseageField.setText("Authentication failed");
                                 updateUI(null);
                             }
 
                             // ...
                         }
                     });
+        } else {
+            Toast.makeText(MainActivity.this, "Please enter a valid email and password", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         TextView status = findViewById(R.id.mainMessageTextView);
-        status.setText("Welcome " + user.getEmail());
+        status.setText("Welcome " );
     }
 
     /*public void onDestroy(FirebaseUser currentUser) {

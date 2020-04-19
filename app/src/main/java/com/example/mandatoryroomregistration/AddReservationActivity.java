@@ -87,23 +87,36 @@ public class AddReservationActivity extends AppCompatActivity {
         saveReservationCall.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
-                if (response.isSuccessful()) {
+                if (roomId > 5 || roomId < 1) {
+                    Toast.makeText(AddReservationActivity.this, "This room id does not exist", Toast.LENGTH_SHORT).show();
+                }
+                else if (response.isSuccessful()) {
+
                     Integer theNewResevation = response.body();
                     Log.d("RESERVATION", theNewResevation.toString());
                     Toast.makeText(AddReservationActivity.this, "Reservation added, id: " + theNewResevation, Toast.LENGTH_SHORT).show();
+
                 } else {
                     String problem = "Problem: " + response.code() + " " + response.message();
                     Log.e("RESERVATION", problem);
-                    Toast.makeText(AddReservationActivity.this, problem, Toast.LENGTH_SHORT).show();
+                    if (fromTime > toTime) {
+                        Toast.makeText(AddReservationActivity.this, "From time can't be higher than to time", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddReservationActivity.this, problem, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
+
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
                 Log.e("RESERVATION", t.getMessage());
             }
         });
-    }/*
+    }
+
+
+/*
     public void deleteReservationButtonClicked(View view) {
         EditText roomIdField = findViewById(R.id.addReservationRoomIdEditText);
         String roomIdString = roomIdField.getText().toString().trim();
@@ -139,7 +152,7 @@ public class AddReservationActivity extends AppCompatActivity {
 
     }*/
 
-    public void getAllReservations(){
+    public void getAllReservations() {
         ReservationRegistrationService reservationRegistrationService = ApiUtils.getReservationRegistrationService();
         Call<List<Reservation>> getAllReservationsCall = reservationRegistrationService.ShowAllReservations();
         TextView messageView = findViewById(R.id.AddReservationMessageTextView);
@@ -166,6 +179,7 @@ public class AddReservationActivity extends AppCompatActivity {
             }
         });
     }
+
     private void populateRecyclerView(List<Reservation> allReservations) {
         RecyclerView recyclerView = findViewById(R.id.AddReservationRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

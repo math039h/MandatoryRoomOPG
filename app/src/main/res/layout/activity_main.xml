@@ -21,19 +21,19 @@
         android:layout_height="wrap_content"
         android:hint="password"
         android:inputType="textPassword" />
-
+<!--
     <Button
         android:id="@+id/mainCreateAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="createAccount"
         android:text="Create a new account" />
-
+-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="doLogin"
-        android:text="Login" />
+        android:text="Log in" />
 <!--
     <Button
         android:layout_width="match_parent"

@@ -73,16 +73,14 @@ public class loggedIn extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.LoggedInAppBarLogout) {
-            //FirebaseAuth.getInstance().signOut();
-            //Intent intent = new Intent(this, MainActivity.class);
-            //startActivity(intent);
+            FirebaseAuth.getInstance().signOut();
             finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void loggedInReservateRoomsFloatingAButton(View view) {
+    public void loggedInToReservateRoomsFAB(View view) {
         Log.d(LOG_TAG, "LoggedIn Intent Test 1");
         Intent intent = new Intent(this, AddReservationActivity.class);
         Log.d(LOG_TAG, "LoggedIn Intent");
@@ -162,9 +160,5 @@ public class loggedIn extends AppCompatActivity {
             Log.d(LOG_TAG, "putExtra " + rooms.toString());
             startActivity(intent);
         });
-    }
-
-    public void BackToMain(View view) {
-        finish();
     }
 }
