@@ -129,10 +129,9 @@
 
                 </LinearLayout>
 
-
                 <include layout="@layout/content_activity_add_reservation" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -150,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical" />
 
-                </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </TableLayout>

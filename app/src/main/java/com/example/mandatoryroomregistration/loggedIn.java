@@ -30,37 +30,26 @@ import retrofit2.Response;
 public class loggedIn extends AppCompatActivity {
     private TextView messageView;
     private static final String LOG_TAG = "Rooms";
-    private FirebaseUser mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
+
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         ActionBar appBar = getSupportActionBar();
         appBar.setTitle("My App Bar");
-        //getAndShowAllFreeRooms();
-        messageView = findViewById(R.id.LoggedInMessageTextView);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        getAllRooms();
-        //FirebaseUser user = mAuth.getInstance().getCurrentUser();
 
-/*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            //        .setAction("Action", null).show();
-            Intent intent = new Intent(loggedIn.this, AddReservationActivity.class);
-            startActivity(intent);
-        });
-*/
+        messageView = findViewById(R.id.LoggedInMessageTextView);
+
+        getAllRooms();
+        /*
         SwipeRefreshLayout refreshLayout = findViewById(R.id.LoggedInSwiperefresh);
         refreshLayout.setOnRefreshListener(() -> {
             getAllRooms();
             refreshLayout.setRefreshing(false);
-        });
+        });*/
     }
 
     @Override
@@ -81,9 +70,7 @@ public class loggedIn extends AppCompatActivity {
     }
 
     public void loggedInToReservateRoomsFAB(View view) {
-        Log.d(LOG_TAG, "LoggedIn Intent Test 1");
         Intent intent = new Intent(this, AddReservationActivity.class);
-        Log.d(LOG_TAG, "LoggedIn Intent");
         startActivity(intent);
     }
 
@@ -98,28 +85,19 @@ public class loggedIn extends AppCompatActivity {
             public void onResponse(Call<List<Rooms>> call, Response<List<Rooms>> response) {
                 if (response.isSuccessful()) {
                     List<Rooms> allRooms = response.body();
-                    Log.d(LOG_TAG, allRooms.toString());
                     populateRecyclerView(allRooms);
                 } else {
                     String message = "Problem " + response.code() + " " + response.message();
-                    Log.d(LOG_TAG, message);
                     messageView.setText(message);
                 }
             }
 
             @Override
             public void onFailure(Call<List<Rooms>> call, Throwable t) {
-                Log.e(LOG_TAG, t.getMessage());
                 messageView.setText(t.getMessage());
             }
         });
     }
-
-    /*@Override
-    public void onStart() {
-        super.onStart();
-        //getAndShowAllFreeRooms();
-    }*/
 
     /*private void getAndShowAllFreeRooms() {
         RoomRegistrationService roomRegistrationService = ApiUtils.getRoomRegistrationService();

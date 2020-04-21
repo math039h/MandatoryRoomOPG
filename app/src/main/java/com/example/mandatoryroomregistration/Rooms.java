@@ -1,7 +1,5 @@
 package com.example.mandatoryroomregistration;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -80,9 +78,6 @@ class Rooms implements Serializable {
                 ", Capacity: " + capacity + '\'' +
                 ", Remarks: " + remarks + '\'';
 
-    }/*
-    @NonNull
-    @Override
-    public String toString() { return name + ": " + description + " " + capacity + ", " + remarks;}*/
+    }
 }
 

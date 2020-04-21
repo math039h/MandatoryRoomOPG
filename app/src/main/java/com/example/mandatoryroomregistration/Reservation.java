@@ -1,12 +1,9 @@
 package com.example.mandatoryroomregistration;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.sql.Time;
 
 class Reservation implements Serializable {
     @SerializedName("id")
@@ -84,7 +81,6 @@ class Reservation implements Serializable {
 
     public void setRoomId(Integer roomId) { this.roomId = roomId; }
 
-
     @Override
     public String toString() {
         return  "From : " + fromTime + '\'' +
@@ -94,8 +90,5 @@ class Reservation implements Serializable {
                 ", Room ID: " + roomId + '\'';
 
     }
-    /*@NonNull
-    @Override
-    public String toString() { return fromTime + ": " + toTime + " " + userId + ", " + purpose + ", " + roomId;} */
 }
 

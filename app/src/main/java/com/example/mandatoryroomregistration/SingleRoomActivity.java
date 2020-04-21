@@ -8,11 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SingleRoomActivity extends AppCompatActivity {
 
@@ -34,17 +29,17 @@ public class SingleRoomActivity extends AppCompatActivity {
         TextView headingView = findViewById(R.id.singleRoomHeadingTextview);
         headingView.setText("Room Id=" + originalRoom.getId());
 
-        EditText titleView = findViewById(R.id.singleRoomNameEditText);
-        titleView.setText(originalRoom.getName());
+        EditText NameView = findViewById(R.id.singleRoomNameEditText);
+        NameView.setText(originalRoom.getName());
 
-        EditText authorView = findViewById(R.id.singleRoomDescriptionEditText);
-        authorView.setText(originalRoom.getDescription());
+        EditText discriptionView = findViewById(R.id.singleRoomDescriptionEditText);
+        discriptionView.setText(originalRoom.getDescription());
 
-        EditText priceView = findViewById(R.id.singleRoomCapacityEditText);
-        priceView.setText(Double.toString(originalRoom.getCapacity()));
+        EditText capacityView = findViewById(R.id.singleRoomCapacityEditText);
+        capacityView.setText(Double.toString(originalRoom.getCapacity()));
 
-        EditText publisherView = findViewById(R.id.singleRoomRemarksEditText);
-        publisherView.setText(originalRoom.getRemarks());
+        EditText remarksView = findViewById(R.id.singleRoomRemarksEditText);
+        remarksView.setText(originalRoom.getRemarks());
     }
 
     public void backButtonClicked(View view) {
@@ -94,7 +89,7 @@ public class SingleRoomActivity extends AppCompatActivity {
         // REST bug: price cannot be updated!
 
         String author = authorField.getText().toString().trim();
-        // TODO check if author is empty string?
+
         String title = titleField.getText().toString().trim();
         String publisher = publisherField.getText().toString().trim();
         String priceString = priceField.getText().toString().trim();

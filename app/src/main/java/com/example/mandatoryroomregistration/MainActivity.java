@@ -1,7 +1,5 @@
 package com.example.mandatoryroomregistration;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,43 +33,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
 
-    public void createAccount(View view) {
-
-        EditText EmailField = findViewById(R.id.mainEmailEditText);
-        EditText PasswordField = findViewById(R.id.mainPasswordEditText);
-        String email = EmailField.getText().toString();
-        String password = PasswordField.getText().toString();
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d(TAG, user.getEmail());
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                        // ...
-                    }
-                });
-
-        // ...
-    }
-
-    public void defaultLogin(View view) {
+    public void defaultLogin() {
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
         EmailField.setText("test@test.dk");
@@ -79,15 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
-        TextView ErrorMesseageField = findViewById(R.id.mainMessageTextView);
         String email = EmailField.getText().toString();
         String password = PasswordField.getText().toString();
-        String problem = "Problem: ";
-        String errorMesseage = ErrorMesseageField.getText().toString();
-        if (email.length() == 0 && password.length() == 0){
-            defaultLogin(view);
-        }
-        else if (email.length() > 5 && password.length() >= 8) {
+        if (email.length() == 0 && password.length() == 0) {
+            defaultLogin();
+        } else if (email.length() > 5 && password.length() >= 8) {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -96,17 +61,13 @@ public class MainActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Log.d(TAG, user.getEmail());
                                 updateUI(user);
-                                LogInSuccess(view);
+                                LogInSuccess();
                             } else {
-                                // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(MainActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                //ErrorMesseageField.setText("Authentication failed");
                                 updateUI(null);
                             }
-
-                            // ...
                         }
                     });
         } else {
@@ -114,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void LogInSuccess(View view) {
+    public void LogInSuccess() {
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
         EmailField.setText("");
@@ -123,48 +84,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*public void SendToLoggedInIfVerified(View view) {
-        FirebaseUser user = mAuth.getInstance().getCurrentUser();
-        //FirebaseUser user = null;
-        if (user != null) {
-            Log.d(TAG, "Test");
-            Intent intent = new Intent(this, loggedIn.class);
-            Toast.makeText(this, "Sending To Logged In", Toast.LENGTH_SHORT).show();
-            startActivity(intent);
-        }
-    }*/
-
-    /*private void getCurrentUserData(View view) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-            String uid = user.getUid();
-        }
-    }*/
-
     private void updateUI(FirebaseUser user) {
         TextView status = findViewById(R.id.mainMessageTextView);
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        if(firebaseUser != null) {
+        if (firebaseUser != null) {
             status.setText("Welcome " + user.getEmail());
         }
-
     }
-
-    /*public void onDestroy(FirebaseUser currentUser) {
-        currentUser = null;
-        super.onDestroy();
-    }*/
 }
 
 

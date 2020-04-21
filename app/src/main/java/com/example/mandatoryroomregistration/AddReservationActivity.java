@@ -28,15 +28,14 @@ public class AddReservationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(LOG_TAG, "Test AddReservationAtivity");
         setContentView(R.layout.activity_add_reservation);
-        Log.d(LOG_TAG, "Test AddR 2");
+
         messageView = findViewById(R.id.AddReservationMessageTextView);
+
         getAllReservations();
 
         SwipeRefreshLayout refreshLayout = findViewById(R.id.AddReservationSwipeRefresh);
         refreshLayout.setOnRefreshListener(() -> {
-            refreshLayout.setRefreshing(true);
             getAllReservations();
             refreshLayout.setRefreshing(false);
         });
@@ -80,10 +79,7 @@ public class AddReservationActivity extends AppCompatActivity {
         }
 
         ReservationRegistrationService roomRegistrationService = ApiUtils.getReservationRegistrationService();
-
-        //Call<Reservation> saveReservationCall = ReservationRegistrationService.saveReservation(fromTime, toTime, userId, price);
         Reservation reservation = new Reservation(fromTime, toTime, userId, purpose, roomId);
-
         Call<Integer> saveReservationCall = roomRegistrationService.saveReservationBody(reservation);
         saveReservationCall.enqueue(new Callback<Integer>() {
             @Override
@@ -92,11 +88,9 @@ public class AddReservationActivity extends AppCompatActivity {
                     Toast.makeText(AddReservationActivity.this, "This room id does not exist", Toast.LENGTH_SHORT).show();
                 }
                 else if (response.isSuccessful()) {
-
                     Integer theNewResevation = response.body();
                     Log.d("RESERVATION", theNewResevation.toString());
                     Toast.makeText(AddReservationActivity.this, "Reservation added, id: " + theNewResevation, Toast.LENGTH_SHORT).show();
-
                 } else {
                     String problem = "Problem: " + response.code() + " " + response.message();
                     Log.e("RESERVATION", problem);
@@ -108,27 +102,23 @@ public class AddReservationActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
                 Log.e("RESERVATION", t.getMessage());
             }
         });
     }
-
-
-
+/*
     public void deleteReservationButtonClicked(View view) {
         ReservationRegistrationService reservationRegistrationService = ApiUtils.getReservationRegistrationService();
         int reservationId = originalReservation.getId();
         Call<Reservation> deleteReservationCall = reservationRegistrationService.deleteReservation(reservationId);
         messageView.setText("");
-
         deleteReservationCall.enqueue(new Callback<Reservation>() {
             @Override
             public void onResponse(Call<Reservation> call, Response<Reservation> response) {
                 if (response.isSuccessful()) {
-                    String message = "Book deleted, id: " + originalReservation.getId();
+                    String message = "Reservation deleted, id: " + originalReservation.getId();
                     Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
                     Log.d(LOG_TAG, message);
                 } else {
@@ -146,13 +136,12 @@ public class AddReservationActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
     public void getAllReservations() {
         ReservationRegistrationService reservationRegistrationService = ApiUtils.getReservationRegistrationService();
         Call<List<Reservation>> getAllReservationsCall = reservationRegistrationService.ShowAllReservations();
         TextView messageView = findViewById(R.id.AddReservationMessageTextView);
-
         messageView.setText("");
         getAllReservationsCall.enqueue(new Callback<List<Reservation>>() {
             @Override
@@ -181,14 +170,14 @@ public class AddReservationActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(allReservations);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener((view, position, item) -> {
+        /*adapter.setOnItemClickListener((view, position, item) -> {
             Reservation reservation = (Reservation) item;
             Log.d(LOG_TAG, item.toString());
             Intent intent = new Intent(this, SingleReservationActivity.class);
             intent.putExtra(SingleReservationActivity.RESERVATION, reservation);
             Log.d(LOG_TAG, "putExtra " + reservation.toString());
             startActivity(intent);
-        });
+        });*/
     }
 }
 

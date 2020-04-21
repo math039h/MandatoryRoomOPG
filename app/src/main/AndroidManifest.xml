@@ -12,17 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SingleReservationActivity"></activity>
+        <activity android:name=".SingleReservationActivity" />
         <activity android:name=".AddReservationActivity" />
         <activity android:name=".SingleRoomActivity" />
         <activity android:name=".loggedIn" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivityKotlin"/>
     </application>
 
 </manifest>
