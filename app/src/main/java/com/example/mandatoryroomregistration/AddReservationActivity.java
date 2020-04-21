@@ -23,7 +23,7 @@ import retrofit2.Response;
 public class AddReservationActivity extends AppCompatActivity {
     private static final String LOG_TAG = "ADDRESERVATION123";
     private Reservation originalReservation;
-
+    private TextView messageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class AddReservationActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "Test AddReservationAtivity");
         setContentView(R.layout.activity_add_reservation);
         Log.d(LOG_TAG, "Test AddR 2");
+        messageView = findViewById(R.id.AddReservationMessageTextView);
         getAllReservations();
 
         SwipeRefreshLayout refreshLayout = findViewById(R.id.AddReservationSwipeRefresh);
@@ -116,41 +117,36 @@ public class AddReservationActivity extends AppCompatActivity {
     }
 
 
-/*
-    public void deleteReservationButtonClicked(View view) {
-        EditText roomIdField = findViewById(R.id.addReservationRoomIdEditText);
-        String roomIdString = roomIdField.getText().toString().trim();
 
+    public void deleteReservationButtonClicked(View view) {
         ReservationRegistrationService reservationRegistrationService = ApiUtils.getReservationRegistrationService();
-        int roomId = originalReservation.getId();
-        Call<Book> deleteBookCall = bookStoreService.deleteBook(bookId);
+        int reservationId = originalReservation.getId();
+        Call<Reservation> deleteReservationCall = reservationRegistrationService.deleteReservation(reservationId);
         messageView.setText("");
 
-        deleteBookCall.enqueue(new Callback<Book>() {
+        deleteReservationCall.enqueue(new Callback<Reservation>() {
             @Override
-            public void onResponse(Call<Book> call, Response<Book> response) {
+            public void onResponse(Call<Reservation> call, Response<Reservation> response) {
                 if (response.isSuccessful()) {
-                    //Snackbar.make(view, "Book deleted, id: " + originalBook.getId(), Snackbar.LENGTH_LONG).show();
-                    String message = "Book deleted, id: " + originalBook.getId();
+                    String message = "Book deleted, id: " + originalReservation.getId();
                     Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
                     Log.d(LOG_TAG, message);
                 } else {
-                    //Snackbar.make(view, "Problem: " + response.code() + " " + response.message(), Snackbar.LENGTH_LONG).show();
                     String problem = call.request().url() + "\n" + response.code() + " " + response.message();
                     messageView.setText(problem);
-                    //Toast.makeText(getBaseContext(), problem, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), problem, Toast.LENGTH_SHORT).show();
                     Log.e(LOG_TAG, problem);
                 }
             }
 
             @Override
-            public void onFailure(Call<Book> call, Throwable t) {
-                //Snackbar.make(view, "Problem: " + t.getMessage(), Snackbar.LENGTH_LONG).show();
+            public void onFailure(Call<Reservation> call, Throwable t) {
+                Toast.makeText(AddReservationActivity.this, "Problem: " + t.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e(LOG_TAG, "Problem: " + t.getMessage());
             }
         });
 
-    }*/
+    }
 
     public void getAllReservations() {
         ReservationRegistrationService reservationRegistrationService = ApiUtils.getReservationRegistrationService();

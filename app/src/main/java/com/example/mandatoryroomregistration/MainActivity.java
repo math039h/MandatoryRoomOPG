@@ -80,12 +80,14 @@ public class MainActivity extends AppCompatActivity {
         EditText EmailField = findViewById(R.id.mainEmailEditText);
         EditText PasswordField = findViewById(R.id.mainPasswordEditText);
         TextView ErrorMesseageField = findViewById(R.id.mainMessageTextView);
-        //defaultLogin(view);
         String email = EmailField.getText().toString();
         String password = PasswordField.getText().toString();
         String problem = "Problem: ";
         String errorMesseage = ErrorMesseageField.getText().toString();
-        if (email.length() > 5 && password.length() >= 8) {
+        if (email.length() == 0 && password.length() == 0){
+            defaultLogin(view);
+        }
+        else if (email.length() > 5 && password.length() >= 8) {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -152,7 +154,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         TextView status = findViewById(R.id.mainMessageTextView);
-        status.setText("Welcome " );
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if(firebaseUser != null) {
+            status.setText("Welcome " + user.getEmail());
+        }
+
     }
 
     /*public void onDestroy(FirebaseUser currentUser) {

@@ -7,8 +7,8 @@
     tools:context=".AddReservationActivity">
 
     <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:stretchColumns="1">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -73,32 +73,47 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-                <!--
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
-                            <EditText
-                                android:id="@+id/deleteReservationByIdEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Input a roomId to be deleted"
-                                android:inputType="text" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
 
-                            <Button
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:onClick="deleteReservationButtonClicked"
-                                android:text="Delete" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Delete A Room Reservation"
+                        android:textSize="35sp" />
 
-                            <TextView
-                                android:id="@+id/deleteReservationMessageTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                </LinearLayout>
 
-                        </LinearLayout>
-                -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/deleteReservationByIdEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Input a roomId to be deleted"
+                        android:inputType="text" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="deleteReservationButtonClicked"
+                        android:text="Delete" />
+
+                    <TextView
+                        android:id="@+id/deleteReservationMessageTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,13 +125,12 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="All Room Resevations"
-                        android:textSize="35dp" />
+                        android:textSize="35sp" />
 
                 </LinearLayout>
 
 
                 <include layout="@layout/content_activity_add_reservation" />
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -133,7 +147,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/AddReservationRecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="1000dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical" />
 
                 </LinearLayout>
